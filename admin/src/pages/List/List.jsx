@@ -26,8 +26,17 @@ const List = () => {
   },[])
 
   return (
-    <div>
-      
+    <div className='list add flex-col'>
+      <p>All Item List</p>
+      <div className="list-table">
+        <div className="list-table-format title">
+          <b></b>
+          <b></b>
+          <b></b>
+          <b></b>
+          <b></b>
+        </div>
+      </div>
     </div>
   )
 }
