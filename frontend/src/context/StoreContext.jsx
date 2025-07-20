@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, use, useEffect, useState } from 'react';
 import { item_list } from '../assets/assets';
 
 export const StoreContext = createContext(null);
@@ -6,7 +6,8 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = React.useState({});
-    const url = "http:localhost:4000"
+    const url = "http://localhost:4000";
+    const [token, setToken] = useState("");
 
     const addToCart = (itemId) => {
         if (!cartItems[itemId]) {
@@ -40,7 +41,9 @@ const StoreContextProvider = (props) => {
         addToCart,
         removeFromCart,
         getTotalCartAmount,
-        url
+        url,
+        token,
+        setToken
     }
 
     return (
