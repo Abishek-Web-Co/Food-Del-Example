@@ -25,13 +25,16 @@ const removeFromCart = async (req, res) => {
     try {
         let userData = await userModel.findById(req.body.userId);
         let cartData = userData.cartData;
-        if(cartData[req.body.itemId]>0){
+        if(cartData[req.body.itemId]>1){       // chatgpt change
             cartData[req.body.itemId] -= 1;
         }
+        else{                                  // chatgpt change
+            delete cartData[req.body.itemId];  // chatgpt change
+        }                                      // chatgpt change
         await userModel.findByIdAndUpdate(req.body.userId, { cartData });
         res.json({ success: true, message: "Item removed from cart" });
     } catch (error) {
-        log(error);
+        console.log(error);
         res.json({ success: false, message: "Error removing item from cart" });
     }
 }
@@ -43,7 +46,7 @@ const getCart = async (req, res) => {
         let cartData = userData.cartData;
         res.json({ success: true, cartData });
     } catch (error) {
-        log(error);
+        console.log(error);
         res.json({ success: false, message: "Error fetching cart data" });
     }
 }
